@@ -20,6 +20,10 @@ define(["jquery", "underscore", "backbone"],
     function ($, _, Backbone) {
 
       var AppRouter = Backbone.Router.extend({
+          initialize: function() {
+            console.log(Backbone.history)
+            Backbone.history.start();
+          },
           routes: {
             "": "newMessage"
           },
@@ -29,7 +33,6 @@ define(["jquery", "underscore", "backbone"],
       });
 
       new AppRouter();
-      Backbone.history.start();
 
     }
 );
