@@ -3,16 +3,33 @@ require.config({
     jquery: "lib/jqMobi.min",
     underscore: "lib/lodash.custom.min",
     backbone: "lib/backbone-min",
-    text: "lib/text",
+    text: "lib/text"
+  },
+  shim: {
+    'backbone': {
+        deps: ['underscore', 'jquery'],
+        exports: 'Backbone'
+    },
+    'underscore': {
+        exports: '_'
+    }
   }
 });
 
-define(function(require) {
-  var $ = require('jquery')
-  var _ = require('underscore')
-  var Backbone = require('backbone')
-  var AppRouter = require('router')
-  
-  // start the router
-  new AppRouter()
-});
+define(["jquery", "underscore", "backbone"],
+    function ($, _, Backbone) {
+
+      var AppRouter = Backbone.Router.extend({
+          routes: {
+            "": "newMessage"
+          },
+          newMessage: function() {
+            console.log('zia-test')
+          }
+      });
+
+      new AppRouter();
+      Backbone.history.start();
+
+    }
+);
